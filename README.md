@@ -241,4 +241,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT — built by [Alexandre Villanueva](https://trykoda.app)
+MIT — built by [Alexandre Villanueva](https://x.com/AlexStudio44)

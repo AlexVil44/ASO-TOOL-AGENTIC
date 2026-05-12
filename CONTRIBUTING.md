@@ -82,4 +82,4 @@ Open an issue with:
 
 ---
 
-Questions? Open an issue or reach out at [trykoda.app](https://trykoda.app).
+Questions? Open an issue or reach out on X [@AlexStudio44](https://x.com/AlexStudio44).
