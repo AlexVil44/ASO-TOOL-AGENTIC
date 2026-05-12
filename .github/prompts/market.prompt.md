@@ -72,3 +72,24 @@ Output a markdown report with:
 - **GO / NO-GO verdict** with the angle to exploit
 
 *downloads estimated as `reviews / 0.015` — community formula, ~1.5% of users leave a review
+
+---
+
+## Output file
+
+Save the report as `reports/YYYY-MM-DD-${input:niche}.md` (create `reports/` folder if missing). Confirm the file path at the end.
+
+Append this metadata block at the bottom of the report:
+
+```markdown
+---
+
+## Report Metadata
+
+| Field      | Value |
+|------------|-------|
+| Niche      | ${input:niche} |
+| Generated  | [today's date] |
+| Model      | [Copilot model in use — e.g. gpt-4o, claude-3.5-sonnet] |
+| Token cost | [not available in Copilot — check your GitHub billing dashboard] |
+```

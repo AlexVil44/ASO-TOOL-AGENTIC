@@ -69,6 +69,25 @@ Always produce a markdown report with these sections:
 5. **MVP feasibility** — must-haves, differentiator, weeks to build
 6. **GO / NO-GO** — with specific angle to exploit
 
+## Report output
+
+Save the report as `reports/YYYY-MM-DD-niche-slug.md` (create `reports/` if missing).
+
+Always append this metadata table at the end of every report:
+
+```markdown
+---
+
+## Report Metadata
+
+| Field        | Value |
+|--------------|-------|
+| Niche        | [niche analyzed] |
+| Generated    | [date] |
+| Model        | [model name from context — e.g. claude-sonnet-4-6, gpt-4o, etc.] |
+| Token cost   | [insert after running /cost or equivalent in your IDE] |
+```
+
 ## Rules
 
 - Use current year (2026) in all Tavily queries
@@ -77,6 +96,7 @@ Always produce a markdown report with these sections:
 - Always include `sellerUrl` when available
 - Max 3 parallel iTunes requests (Apple rate limits)
 - If < 5 results for a country, try a broader keyword and note it
+- Always save the report to `reports/` and confirm the path to the user
 
 ## /market command
 

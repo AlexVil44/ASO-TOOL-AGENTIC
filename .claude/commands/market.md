@@ -206,6 +206,17 @@ Classer les pays du score le plus élevé au plus faible.
 
 > **[GO / NO-GO / GO avec pivot]**
 > [3 phrases : pourquoi, quel pays commencer, quel différenciateur exploiter]
+
+---
+
+## Métadonnées
+
+| Champ        | Valeur |
+|--------------|--------|
+| Niche        | [NICHE] |
+| Généré le    | [DATE_JOUR] |
+| Modèle       | [NOM_MODELE — lire depuis le contexte système : "You are powered by the model named..."] |
+| Coût tokens  | ⚡ Lancer `/cost` dans Claude Code pour voir le coût de cette session |
 ```
 
 ---
@@ -219,3 +230,4 @@ Classer les pays du score le plus élevé au plus faible.
 - Site web : champ `sellerUrl` de l'API iTunes — `N/D` si absent
 - DL : toujours préciser que c'est une estimation (`reviews / 0.015`)
 - Données manquantes → `N/D`, jamais inventer
+- **Sauvegarder le rapport** : écrire le fichier dans `reports/YYYY-MM-DD-niche-slug.md` (créer le dossier `reports/` s'il n'existe pas) et confirmer le chemin à l'utilisateur
