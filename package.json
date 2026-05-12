@@ -1,0 +1,14 @@
+{
+  "name": "aso-market-agent",
+  "version": "1.0.0",
+  "description": "Claude Code slash commands for App Store market research — iTunes API + Tavily, no subscription needed",
+  "type": "module",
+  "scripts": {
+    "market": "node src/itunes.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["aso", "app-store", "market-research", "claude-code", "ios", "indie-dev"],
+  "license": "MIT"
+}
