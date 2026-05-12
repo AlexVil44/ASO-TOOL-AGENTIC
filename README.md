@@ -1,12 +1,17 @@
 # aso-market-agent
 
-Claude Code slash commands for App Store market research — no subscription, no SaaS, no bullshit.
+App Store market research for iOS indie developers — no subscription, no SaaS, no bullshit.
 
-Uses Apple's free iTunes Search API + Tavily web search to produce actionable market reports in minutes.
+Works with **Claude Code**, **GitHub Copilot** and **OpenCode**. Uses Apple's free iTunes Search API + Tavily web search.
 
+**Claude Code**
 ```
 /market meditation app
 ```
+
+**GitHub Copilot** (VS Code) — open Copilot Chat, click the prompt picker, select `market`
+
+**OpenCode** — type `/market` in the agent chat
 
 → Competitor list with App Store links, download estimates, country scores, GO / NO-GO verdict.
 
@@ -172,21 +177,46 @@ node .claude/scripts/tavily-search.mjs "sleep tracker iOS market 2026"
 
 ---
 
+## Supported agentic IDEs
+
+| IDE | How to use | Config files |
+|-----|-----------|--------------|
+| **Claude Code** | `/market keyword` | `.claude/commands/market.md` |
+| **GitHub Copilot** | Copilot Chat → prompt picker → `market` | `.github/prompts/market.prompt.md` |
+| **OpenCode** | `/market` in agent chat | `AGENTS.md` |
+
+### GitHub Copilot setup
+
+No extra steps. Open the repo in VS Code, open Copilot Chat (`Ctrl+Shift+I`), click the **paperclip / prompt** icon to browse available prompts, and select `market`. You'll be prompted to enter the niche.
+
+Requires VS Code with the GitHub Copilot extension (v1.250+).
+
+### OpenCode setup
+
+No extra steps. Open the repo with OpenCode — it reads `AGENTS.md` automatically. Type `/market` in the chat and describe the niche you want to analyze.
+
+---
+
 ## Structure
 
 ```
 aso-market-agent/
   .claude/
     agents/
-      market-analyst.md       ← Claude agent specialized in App Store analysis
+      market-analyst.md       ← Claude agent for App Store analysis
     commands/
-      market.md               ← /market slash command
+      market.md               ← /market slash command (Claude Code)
     scripts/
-      tavily-search.mjs       ← Tavily CLI (used by the slash command)
-      .env.example            ← copy this → .env, add your Tavily key
+      tavily-search.mjs       ← Tavily CLI
+      .env.example            ← copy → .env, add Tavily key
+  .github/
+    copilot-instructions.md   ← Copilot workspace context
+    prompts/
+      market.prompt.md        ← /market prompt (GitHub Copilot)
   src/
     itunes.js                 ← iTunes Search + Lookup API (importable)
     tavily.js                 ← Tavily search service (importable)
+  AGENTS.md                   ← OpenCode instructions + /market command
   .gitignore
   package.json
   README.md
