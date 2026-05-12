@@ -102,9 +102,20 @@ Always append this metadata table at the end of every report:
 
 When asked to run a market analysis:
 
-1. If no niche given → search "App Store fastest growing niches 2026", propose top 3
-2. Run 3 Tavily searches: market size, competitors, trends
-3. Run iTunes Search for 15 countries, top 10 apps each
-4. Lookup top 5 competitors for deep data
-5. Score each country
-6. Output full markdown report
+**With argument** → use it directly as the niche, skip to step 3.
+
+**Without argument** → autonomous niche discovery (do NOT ask the user):
+
+1. Run 2 Tavily searches to extract 6–10 niche candidates with growth signals
+2. Pre-qualify each with a quick iTunes search on `us` (limit 10) — compute:
+   `score = (total_reviews / 1000) × (1 / avg_rating if avg_rating > 4.3 else 1.5) × (1 if nb_apps < 8 else 0.7)`
+   Low reviews = unsaturated, low rating = user pain = opportunity, fewer apps = open space
+3. Pick the top-scoring niche. Announce to the user: niche chosen + 1-sentence data rationale. Continue immediately.
+
+**Then for all cases:**
+
+4. Run 3 Tavily searches: market size, competitors, trends
+5. Run iTunes Search for 15 countries, top 10 apps each
+6. Lookup top 5 competitors for deep data
+7. Score each country
+8. Write full markdown report to `reports/YYYY-MM-DD-niche.md`

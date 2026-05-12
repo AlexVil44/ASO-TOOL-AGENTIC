@@ -23,7 +23,7 @@ A full markdown report saved to `reports/`, covering:
 - **GO / NO-GO verdict** with the specific angle to exploit
 - **Report metadata** — date, model used, token cost hint
 
-Without an argument, `/market` identifies the 3 most promising niches of the current year and asks which to dig into.
+Without an argument, `/market` runs in autonomous mode: it researches trending niches, pre-qualifies each with real iTunes data, picks the best opportunity on its own, and launches the full analysis — no input required.
 
 ---
 
@@ -104,7 +104,7 @@ No `npm install`. No build step. One config file.
 ## Usage
 
 ```
-/market                       find the 3 most promising niches right now
+/market                       autonomous mode — agent finds and picks the best niche from real data
 /market meditation app
 /market budget personal finance
 /market sleep tracker ios
@@ -135,11 +135,16 @@ saturation     number of apps with rating >= 4.5 in the top 10
 ## How it works
 
 ```
-/market keyword
+/market [keyword]
     │
-    ├── Phase 0   no keyword → Tavily finds trending niches, proposes top 3
+    ├── Phase 0   no keyword → autonomous niche discovery
+    │               Tavily: extract 6–10 niche candidates with growth signals
+    │               iTunes: pre-qualify each (reviews, rating, result count)
+    │               Agent picks the best, announces choice + data rationale
+    │               → continues immediately, no user input needed
+    │
     ├── Phase 1   Tavily × 3 → market size, trends, revenue models
-    ├── Phase 2a  iTunes Search API × 15 countries → top 10 apps + URLs per market
+    ├── Phase 2a  iTunes Search API × 15 countries → top 10 apps + URLs
     ├── Phase 2b  iTunes Lookup → deep data on top 5 competitors
     ├── Phase 3   score each country
     └── Phase 4   write report to reports/YYYY-MM-DD-niche.md

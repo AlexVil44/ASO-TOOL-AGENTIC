@@ -12,18 +12,56 @@ Utiliser la date du jour disponible dans le contexte (`currentDate`) dans toutes
 
 ## Phase 0 — Déterminer la niche
 
-**Si `$ARGUMENTS` est vide** (commande lancée sans argument) :
+**Si `$ARGUMENTS` est renseigné** : utiliser directement ce terme, passer à la Phase 1.
 
-Lancer deux recherches Tavily pour identifier les niches les plus porteuses :
+**Si `$ARGUMENTS` est vide** — mode découverte autonome :
+
+L'agent détermine lui-même la meilleure niche à analyser sans demander à l'utilisateur. Processus en 3 étapes :
+
+### 0a. Identifier les candidats (Tavily)
 
 ```bash
-NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "App Store fastest growing app categories niches 2026 revenue opportunity indie developer"
-NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "iOS app market trends underserved niche low competition high downloads 2026"
+NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "App Store fastest growing app categories 2026 revenue indie developer low competition"
+NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "iOS app niche underserved market opportunity high downloads 2026 solo developer buildable"
 ```
 
-Sélectionner les **3 niches les plus prometteuses** (croissance YoY > 15%, compétition modérée, faisable en solo). Présenter ces 3 options à l'utilisateur et demander laquelle approfondir.
+Extraire une liste de 6 à 10 niches candidates avec pour chacune : signal de croissance, niveau de compétition estimé, faisabilité solo.
 
-**Si `$ARGUMENTS` est renseigné** : utiliser directement ce terme comme niche.
+### 0b. Pré-qualifier avec iTunes (données réelles)
+
+Pour chacune des niches candidates, lancer une recherche iTunes sur `us` uniquement :
+
+```bash
+curl -s "https://itunes.apple.com/search?term=NICHE&entity=software&country=us&limit=10" | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+apps = data.get('results', [])
+reviews = [a.get('userRatingCount', 0) for a in apps]
+ratings = [a.get('averageUserRating', 0) for a in apps if a.get('averageUserRating')]
+total_reviews = sum(reviews)
+avg_rating = sum(ratings)/len(ratings) if ratings else 0
+top_dl = int(max(reviews)/0.015) if reviews else 0
+print(f'results={len(apps)} total_reviews={total_reviews} avg_rating={avg_rating:.1f} top_dl_est={top_dl}')
+"
+```
+
+Calculer pour chaque candidat un **score de présélection** :
+```
+score = (total_reviews / 1000) × (1 / avg_rating si avg_rating > 4.3 else 1.5) × (1 si nb_apps < 8 else 0.7)
+```
+— peu de reviews = marché peu saturé, rating moyen bas = insatisfaction = opportunité, moins de 8 apps dans le top 10 = espace disponible.
+
+### 0c. Sélectionner et annoncer
+
+Choisir la niche avec le meilleur score de présélection. Annoncer à l'utilisateur :
+
+```
+Niche retenue : [NICHE]
+Raison : [1 phrase basée sur les données — ex: "top 10 totalise seulement 12K reviews, rating moyen 3.8, 6 apps dans les résultats = marché peu saturé avec insatisfaction utilisateurs"]
+Lancement de l'analyse complète...
+```
+
+Continuer directement avec la Phase 1 sur cette niche — sans attendre de confirmation.
 
 ---
 

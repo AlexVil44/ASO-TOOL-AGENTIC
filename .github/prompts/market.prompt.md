@@ -8,9 +8,14 @@ tools:
 
 # App Store Market Research
 
-Analyze the App Store market for the niche: **${input:niche:Enter the app niche to research (e.g. "meditation app", "budget tracker")}**
+Analyze the App Store market for: **${input:niche:Niche to research — leave blank for autonomous discovery}**
 
 Use today's date in all web searches to get fresh 2026 data.
+
+**If the niche field was left blank** — autonomous mode: do NOT ask the user. Instead:
+1. Run 2 Tavily searches to extract 6–10 niche candidates with growth signals
+2. Pre-qualify each with iTunes Search on `us` (limit 10) — score: `(total_reviews / 1000) × (low_rating_bonus) × (low_count_bonus)`
+3. Pick the highest-scoring niche, announce it with a 1-sentence data rationale, continue immediately.
 
 ## Step 1 — Web research (run in terminal)
 
