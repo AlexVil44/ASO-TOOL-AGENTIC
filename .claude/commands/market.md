@@ -67,15 +67,16 @@ Continuer directement avec la Phase 1 sur cette niche — sans attendre de confi
 
 ## Phase 1 — Recherche marché (Tavily)
 
-Lancer 3 recherches avec l'année courante :
+Lancer 4 recherches avec l'année courante :
 
 ```bash
 NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "NICHE iOS app market size revenue growth 2026 statistics"
 NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "NICHE App Store best apps competitors indie success story 2025 2026"
 NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "NICHE app store keyword trends growing niche underserved opportunity 2026"
+NODE_TLS_REJECT_UNAUTHORIZED=0 node .claude/scripts/tavily-search.mjs "App Store keywords search volume NICHE category 2026 ASO optimization"
 ```
 
-Extraire : taille du marché, croissance YoY, pain points, niches sous-exploitées, modèles de revenus dominants.
+Extraire : taille du marché, croissance YoY, pain points, niches sous-exploitées, modèles de revenus dominants, **keywords les plus recherchés et leur volume de recherche estimé**.
 
 ---
 
@@ -180,6 +181,24 @@ Classer les pays du score le plus élevé au plus faible.
 
 ---
 
+## Stratégie ASO & Keywords
+
+### Keywords prioritaires
+| Keyword | Volume* | Difficulté | Compétiteurs | Recommandation |
+|---------|---------|-----------|--------------|----------------|
+| Primary keyword | XXK/mois | Haute | 50+ | Intégrer dans title |
+| Secondary | XXK/mois | Moyenne | 20+ | Intégrer dans subtitle |
+| Long-tail | XXK/mois | Basse | <10 | Intégrer dans description |
+
+*Volume estimé recherches mensuelles App Store
+
+### Stratégie de titre & subtitle
+- **Title** (30 chars max) : `[Primary Keyword] - [Differentiator]`
+- **Subtitle** (30 chars max) : `[Secondary Keyword] + [Use Case]`
+- **Mots clés** (keyword field, 100 chars) : `keyword1, keyword2, keyword3, keyword4, keyword5`
+
+---
+
 ## Concurrents Principaux
 
 | App | Rating | Avis | DL estimés* | Prix | Âge | App Store | Site web |
@@ -268,4 +287,5 @@ Classer les pays du score le plus élevé au plus faible.
 - Site web : champ `sellerUrl` de l'API iTunes — `N/D` si absent
 - DL : toujours préciser que c'est une estimation (`reviews / 0.015`)
 - Données manquantes → `N/D`, jamais inventer
+- **Keywords** : toujours extraire depuis Tavily (recherche trends + volume), classer par volume et difficulté, fournir des templates de title/subtitle prêts à l'emploi
 - **Sauvegarder le rapport** : écrire le fichier dans `reports/YYYY-MM-DD-niche-slug.md` (créer le dossier `reports/` s'il n'existe pas) et confirmer le chemin à l'utilisateur
