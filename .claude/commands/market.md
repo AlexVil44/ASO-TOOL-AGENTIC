@@ -266,6 +266,46 @@ Classer les pays du score le plus élevé au plus faible.
 
 ---
 
+## Stratégie Marketing Indie Dev
+
+### Canaux recommandés
+
+| Canal | Coût mensuel | Effort | ROI indie | Timing |
+|-------|-------------|--------|-----------|--------|
+| Apple Search Ads (ASA) | $50–200 | Faible | ★★★★★ | J0 (lancement) |
+| Reddit (subreddits niche) | Gratuit | Moyen | ★★★★☆ | T-8 semaines |
+| Twitter/X #buildinpublic | Gratuit | Élevé | ★★★☆☆ | T-12 semaines |
+| TikTok / Reels | Gratuit | Élevé | ★★★★☆ | T-4 semaines |
+| Product Hunt | Gratuit | Moyen | ★★★☆☆ | J0 |
+| Micro-influenceurs niche | $0–100 | Moyen | ★★★★☆ | T-2 semaines |
+| Newsletter sponsoring | $50–300 | Faible | ★★★★☆ | J+30 |
+
+### Budget bootstrapé recommandé
+
+| Phase | Budget | Actions prioritaires |
+|-------|--------|---------------------|
+| Pré-lancement (8 semaines) | $0–100 | Landing page waitlist, build in public, teaser screenshots |
+| Lancement (J0 – J7) | $50–300 | Product Hunt, Apple Search Ads $10/jour, post Reddit |
+| Post-lancement (3 mois) | $100–400/mois | ASA continu, 2-3 micro-influenceurs niche, review farming |
+
+### Apple Search Ads — Priorité #1 indie
+Canal à ROI le plus prévisible pour une app iOS. Budget minimal viable : **$3-5/jour**.
+- Cibler les **keywords long-tail** (<1000 MAU), CPT cible $0.30–0.80
+- Bidder sur son propre nom dès J0 (brand defense)
+- Bidder sur les noms des concurrents directs (légal et efficace)
+- Activer les **Custom Product Pages** pour des accroches par persona
+
+### Séquence de lancement recommandée
+
+1. **T-12 à T-8** : Build in public Twitter/X, screenshots teaser, landing page
+2. **T-8 à T-4** : Waitlist, posts Reddit niche, premier short video viral
+3. **T-2** : Preview Product Hunt, contact 3-5 micro-influenceurs
+4. **J0** : Product Hunt launch + ASA $10/jour + post Reddit + email waitlist
+5. **J+7** : Push notif demande d'avis, analyse ASA, optimisation keywords
+6. **J+30** : Analyse rétention J1/J7/J30, pivot ou scale
+
+---
+
 ## Métadonnées
 
 | Champ        | Valeur |

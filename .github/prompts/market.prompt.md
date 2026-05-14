@@ -75,6 +75,11 @@ Output a markdown report with:
 - **Country ranking table** — score, avg DL top10, saturation, verdict (✅ Priority / ⚠️ Secondary)
 - **MVP feasibility** — must-have features, differentiator, estimated weeks solo
 - **GO / NO-GO verdict** with the angle to exploit
+- **Indie Dev Marketing Strategy** section:
+  - Recommended channels table (Apple Search Ads, Reddit, Twitter/X, TikTok, Product Hunt, micro-influencers, newsletters) with monthly cost, effort level, estimated ROI, and timing
+  - Bootstrapped budget table: pre-launch / launch (J0–J7) / post-launch (3 months)
+  - Apple Search Ads tactics: long-tail keywords, brand bidding, competitor conquest, Custom Product Pages
+  - Recommended launch sequence: T-12w to J+30
 
 *downloads estimated as `reviews / 0.015` — community formula, ~1.5% of users leave a review
 
